@@ -1,6 +1,6 @@
 name: Run Playwright Tests
 
-on:
+off:
   push:
     branches: [main]
   pull_request:
