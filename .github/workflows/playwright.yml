@@ -1,36 +1,36 @@
-name: Run Playwright Tests
+# name: Run Playwright Tests
 
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+# on:
+#   push:
+#     branches: [main]
+#   pull_request:
+#     branches: [main]
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout do código
-        uses: actions/checkout@v3
+#     steps:
+#       - name: Checkout do código
+#         uses: actions/checkout@v3
 
-      - name: Instalar Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
+#       - name: Instalar Node.js
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 18
 
-      - name: Instalar dependências
-        run: npm install
+#       - name: Instalar dependências
+#         run: npm install
 
-      - name: Instalar browsers do Playwright
-        run: npx playwright install --with-deps
+#       - name: Instalar browsers do Playwright
+#         run: npx playwright install --with-deps
 
-      - name: Executar testes
-        run: npx playwright test
+#       - name: Executar testes
+#         run: npx playwright test
 
-      - name: Publicar relatório HTML
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-report
-          path: playwright-report
+#       - name: Publicar relatório HTML
+#         if: always()
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: playwright-report
+#           path: playwright-report
