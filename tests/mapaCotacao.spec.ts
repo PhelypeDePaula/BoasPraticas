@@ -9,24 +9,35 @@ dotenv.config({ path: path.resolve(__dirname, '../.env') });
 test('Buscar e abrir mapa de cotação pelo SCGC', async ({ page }) => {
   const loginPage = new LoginPage(page);
   const mapaPage = new MapaCotacaoPage(page);
+  const codigoMapa = '919';
+  const statusMapa = 'Autorizado';
 
-  await loginPage.goto();
-  await loginPage.login(process.env.USERNAME || '', process.env.PASSWORD || '');
-  console.log('✅ Login realizado com sucesso!');
+  try {
+    // 1. Login
+    await loginPage.goto();
+    await loginPage.login(process.env.USERNAME || '', process.env.PASSWORD || '');
+    console.log('✅ Login realizado com sucesso!');
 
-  await mapaPage.navegarParaMapas();
-  console.log('✅ Acesso à Mapas de Cotação realizado.');
+    // 2. Navegar para Mapas de Cotação
+    await mapaPage.navegarParaMapas();
+    console.log('✅ Acesso à Mapas de Cotação realizado.');
 
-  await mapaPage.buscarPorCodigo('919');
-  await mapaPage.abrirDetalhes();
-  console.log('✅ Detalhes do mapa acessados.');
+    // 3. Buscar mapa pelo código
+    await mapaPage.buscarPorCodigo(codigoMapa);
 
-  await mapaPage.abrirMapa('919');
-  console.log('✅ Mapa aberto!');
+    // 4. Acessar os detalhes da busca
+    await mapaPage.abrirDetalhes();
 
-  await mapaPage.ativarModoEdicao();
-  console.log('✅ Modo de edição ativado!');
+    // 5. Abrir o mapa pelo código e status
+    await mapaPage.abrirMapaPorCodigoEStatus(codigoMapa, statusMapa);
 
-  await mapaPage.tirarScreenshot('screenshot-mapaCot.png');
-  console.log('📸 Screenshot salva com sucesso!');
+    // 6. Tirar screenshot final
+    await mapaPage.tirarScreenshot(`screenshot-mapa-${codigoMapa}.png`);
+
+    console.log('✅ Teste completo com sucesso!');
+  } catch (err) {
+    console.error('❌ Teste falhou:', err);
+    await page.screenshot({ path: `error-fatal-${codigoMapa}.png`, fullPage: true });
+    throw err;
+  }
 });
