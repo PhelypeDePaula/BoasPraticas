@@ -1,18 +1,1 @@
-# Node modules
-node_modules/
-
-# Playwright output
-test-results/
-playwright-report/
-*.log
-
-# Ambiente
-.env
-
-# IDEs
-.vscode/
-.idea/
-
-# Outras possíveis pastas temporárias
-dist/
-out/
+*
