@@ -4,20 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/PhelypeDePaula/BoasPraticas.git"
+    "test": "npx playwright test",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/PhelypeDePaula/BoasPraticas/issues"
-  },
-  "homepage": "https://github.com/PhelypeDePaula/BoasPraticas#readme",
   "devDependencies": {
-    "@playwright/test": "^1.53.0"
-  }
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^24.0.0",
+    "husky": "^9.1.7",
+    "playwright": "^1.52.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0"
+  } 
 }
